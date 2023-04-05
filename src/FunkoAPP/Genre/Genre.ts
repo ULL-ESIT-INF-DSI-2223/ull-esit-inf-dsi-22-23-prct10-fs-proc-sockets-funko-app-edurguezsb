@@ -2,6 +2,7 @@
  * Enumeración de géneros para figuras de Funko.
  * @enum
  */
+
 export enum FunkoGenre {
   /** 
    * Animación 
