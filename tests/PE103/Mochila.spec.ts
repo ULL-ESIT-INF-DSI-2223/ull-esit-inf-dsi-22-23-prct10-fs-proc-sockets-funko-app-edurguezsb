@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import 'mocha';
-import { Mochila } from '../../src/PE103/Mochila/Mochila.js';
+import { Mochila } from '../../src/Ejercicio-PE103/Mochila/Mochila.js';
 
 describe('Mochila', function() {
 

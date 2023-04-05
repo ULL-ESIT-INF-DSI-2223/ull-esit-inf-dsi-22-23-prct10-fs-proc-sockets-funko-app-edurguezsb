@@ -1,10 +1,10 @@
 import 'mocha'
 import { expect } from 'chai'
 import chalk from "chalk"
-import { FunkoType } from '../../src/FunkoAPP/Type/Type.js'
-import { FunkoGenre } from '../../src/FunkoAPP/Genre/Genre.js'
-import { FunkoPop } from '../../src/FunkoAPP/FunkoPop/FunkoPop.js'
-import { User } from '../../src/FunkoAPP/User/user.js'
+import { FunkoType } from '../../src/Ejercicio-FunkoAPP/Type/Type.js'
+import { FunkoGenre } from '../../src/Ejercicio-FunkoAPP/Genre/Genre.js'
+import { FunkoPop } from '../../src/Ejercicio-FunkoAPP/FunkoPop/FunkoPop.js'
+import { User } from '../../src/Ejercicio-FunkoAPP/User/user.js'
 
 
 const Chucky = new FunkoPop(

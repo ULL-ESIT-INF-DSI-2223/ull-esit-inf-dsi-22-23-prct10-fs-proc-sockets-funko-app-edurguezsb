@@ -1,8 +1,8 @@
 import 'mocha'
 import { expect } from 'chai'
-import { FunkoType } from '../../src/FunkoAPP/Type/Type.js'
-import { FunkoGenre } from '../../src/FunkoAPP/Genre/Genre.js'
-import { FunkoPop } from '../../src/FunkoAPP/FunkoPop/FunkoPop.js'
+import { FunkoType } from '../../src/Ejercicio-FunkoAPP/Type/Type.js'
+import { FunkoGenre } from '../../src/Ejercicio-FunkoAPP/Genre/Genre.js'
+import { FunkoPop } from '../../src/Ejercicio-FunkoAPP/FunkoPop/FunkoPop.js'
 
 
 const Michael_Jordan = new FunkoPop(
