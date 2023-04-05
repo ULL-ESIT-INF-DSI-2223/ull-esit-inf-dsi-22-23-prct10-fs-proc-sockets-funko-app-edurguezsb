@@ -595,6 +595,8 @@ All files               |   97.71 |    91.89 |      80 |   97.71 |
 ```
 
 
+
+
 ## Conclusiones
 
 Ejercicio bastante interesante a la par que entretenido de realizar. A medida que avanzamos en la asignatura voy descrubiendo nuevas herramientas muy útiles que desconocía. También desconocía todo el mundillo este de coleccionismo de FunkoPops pero está bastante curioso.
