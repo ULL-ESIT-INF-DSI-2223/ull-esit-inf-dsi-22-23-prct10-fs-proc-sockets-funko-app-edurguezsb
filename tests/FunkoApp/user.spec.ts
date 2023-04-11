@@ -5,7 +5,7 @@ import { FunkoType } from '../../src/Ejercicio-FunkoAPP/Type/Type.js'
 import { FunkoGenre } from '../../src/Ejercicio-FunkoAPP/Genre/Genre.js'
 import { FunkoPop } from '../../src/Ejercicio-FunkoAPP/FunkoPop/FunkoPop.js'
 import { User } from '../../src/Ejercicio-FunkoAPP/User/user.js'
-
+const fs = require('fs');
 
 const Chucky = new FunkoPop(
   0,
@@ -101,5 +101,95 @@ describe('User class', () => {
   it('deberían poder buscar Funkos en su colección.', () => {
     expect(user.searchFunko(Darth_Vader)).to.be.equal(chalk.green(Darth_Vader.name + ' found in ' + user.name + '\'s collection'))
     expect(user.searchFunko(The_Mandalorian)).to.be.equal(chalk.red(The_Mandalorian.name + ' not in ' + user.name + '\'s collection'))
+  });
+});
+
+describe('User class', () => {
+  let user;
+  let funko1;
+  let funko2;
+
+  beforeEach(() => {
+    user = new User('TestUser');
+    funko1 = new FunkoPop(
+      0,
+      'Chucky',
+      'Chucky Muñeco Diabolico',
+      FunkoType.POP,
+      FunkoGenre.MOVIES_AND_TV,
+      'Miedo',
+      0
+    );
+    funko2 = new FunkoPop(
+      1, 
+      'Mickey Mouse',
+      'The most famous character of Walt Disney',
+      FunkoType.POP_BLACK_AND_WHITE,
+      FunkoGenre.ANIMATION,
+      'Disney',
+      1
+    );
+    user.addFunko(funko1);
+    user.addFunko(funko2);
+  });
+
+  afterEach(() => {
+    // Limpiar archivos de prueba
+    try {
+      fs.unlinkSync(`./data/users/${user.name}.json`);
+    } catch (err) {
+      // Ignorar errores de archivo no encontrado
+    }
+  });
+
+  describe('#listFunkos', () => {
+    it('should print all Funko Pops in the collection', () => {
+      // Implemente una función de espía o una función de burla para verificar si FunkoPop.print() se llama con los Funko Pops correctos
+    });
+  });
+
+  describe('#searchFunko', () => {
+    it('should find and print a Funko Pop if it exists in the collection', () => {
+      const result = user.searchFunko(funko1);
+      expect(result).to.equal(chalk.green(`${funko1.name} found in ${user.name}'s collection`));
+      // También puede verificar si FunkoPop.print() se llama con el Funko Pop correcto
+    });
+
+    it("should return an error message if the Funko Pop doesn't exist in the collection", () => {
+      const funkoNotInCollection = new FunkoPop(
+        2,
+        'Darth Vader',
+        'The most famous character of Star Wars',
+        FunkoType.POP,
+        FunkoGenre.MOVIES_AND_TV,
+        'Star Wars',
+        2
+      );
+      const result = user.searchFunko(funkoNotInCollection);
+      expect(result).to.equal(chalk.red(`${funkoNotInCollection.name} not in ${user.name}'s collection`));
+    });
+  });
+
+  describe('#save', () => {
+    it('should save the user and their collection to a JSON file', () => {
+      user.save();
+
+      const fileContent = fs.readFileSync(`./data/users/${user.name}.json`, 'utf-8');
+      const savedUser = JSON.parse(fileContent);
+
+      expect(savedUser.name).to.equal(user.name);
+      expect(savedUser.collection).to.deep.equal(user.collection);
+    });
+  });
+
+  describe('#load', () => {
+    it('should load the user and their collection from a JSON file', () => {
+      user.save();
+      const loadedUser = new User(user.name);
+      loadedUser.load();
+
+      expect(loadedUser.name).to.equal(user.name);
+      expect(loadedUser.collection).to.deep.equal(user.collection);
+    });
   });
 });
