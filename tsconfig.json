@@ -66,4 +66,4 @@
 	  "strictPropertyInitialization": true
 	},
 	"include": ["./src/**/*.ts"]
-  }
+}
