@@ -1,63 +1,45 @@
 import 'mocha'
 import { expect } from 'chai'
-import { FunkoType } from '../../src/Ejercicio-FunkoAPP/Type/Type.js'
-import { FunkoGenre } from '../../src/Ejercicio-FunkoAPP/Genre/Genre.js'
-import { FunkoPop } from '../../src/Ejercicio-FunkoAPP/FunkoPop/FunkoPop.js'
+import { RequestType, FunkoApp } from '../../src/Ejercicio-FunkoAPP/AppFunko/FunkoApp.js'
+import { Client } from '../../src/Ejercicio-FunkoAPP/AppFunko/Client.js'
 
+describe('Funko App Tests', () => {
+  const funkoApp: FunkoApp = new FunkoApp(4000)
+  const client: Client = new Client(4000)
+  describe('FunkoApp class tests', () => {
+    it('FunkoApp should be an instance of FunkoApp class', () => {
+      expect(funkoApp).to.be.an.instanceof(FunkoApp)
+    })
+    it('FunkoApp should have a port property', () => {
+      expect(funkoApp).to.have.property('port')
+      expect(funkoApp.port).to.be.a('number')
+    })
+    it('FunkoApp should have a server property', () => {
+      expect(funkoApp).to.have.property('server')
+    })
+  })
 
-const Michael_Jordan = new FunkoPop(
-  0,
-  'Michael Jordan',
-  'Funko POP! Michael Jordan – 54 NBA Chicago Bulls',
-  FunkoType.POP,
-  FunkoGenre.SPORTS,
-  'NBA',
-  0
-)
-
-describe('Funko class', () => {
-  it('deberían tener diferentes tipos y géneros', () => {
-    expect(FunkoType).to.be.a('object')
-    expect(FunkoGenre).to.be.a('object')
-  })
-  it('deberían tener una identificación única', () => {
-    expect(Michael_Jordan.id).to.be.a('number')
-    expect(Michael_Jordan.id).to.equal(0)
-  })
-  it('deberían tener un nombre', () => {
-    expect(Michael_Jordan.name).to.be.a('string')
-    expect(Michael_Jordan.name).to.equal('Michael Jordan')
-  })
-  it('deberían tenewr una descripción', () => {
-    expect(Michael_Jordan.description).to.be.a('string')
-    expect(Michael_Jordan.description).to.equal(
-      'Funko POP! Michael Jordan – 54 NBA Chicago Bulls'
-    )
-  })
-  it('deberían tener un tipo', () => {
-    expect(Michael_Jordan.type).to.be.a('string')
-    expect(Michael_Jordan.type).to.equal(FunkoType.POP)
-  })
-  it('deberían tener un género', () => {
-    expect(Michael_Jordan.genre).to.be.a('string')
-    expect(Michael_Jordan.genre).to.equal(FunkoGenre.SPORTS)
-  })
-  it('deberían tener una marca', () => {
-    expect(Michael_Jordan.brand).to.be.a('string')
-    expect(Michael_Jordan.brand).to.equal('NBA')
-  })
-  it('deberían tener un id único dentro de su marca', () => {
-    expect(Michael_Jordan.brandId).to.be.a('number')
-    expect(Michael_Jordan.brandId).to.equal(0)
-  })
-  it('deberían tener un precio de mercado', () => {
-    Michael_Jordan.marketPrice = 38
-    expect(Michael_Jordan.marketPrice).to.be.a('number')
-    expect(Michael_Jordan.marketPrice).to.equal(38)
-  })
-  it('deberían de poder ser exclusivos', () => {
-    Michael_Jordan.exclusive = true
-    expect(Michael_Jordan.exclusive).to.be.a('boolean')
-    expect(Michael_Jordan.exclusive).to.equal(true)
+  describe('Client class tests', () => {
+    it('Client should be an instance of Client class', () => {
+      expect(client).to.be.an.instanceof(Client)
+    })
+    it('Client should have a socket property', () => {
+      expect(client).to.have.property('socket')
+    })
+    it('Client should have a port property', () => {
+      expect(client).to.have.property('port')
+      expect(client.port).to.be.a('number')
+    })
+    it('Client should be able to connect to a server, send a command and receive the output', () => {
+      const request: RequestType = {
+        user: 'Iluzio',
+        type: 'list',
+      }
+      client.connect(request, (response) => {
+        expect(response.type).to.be.equal('list')
+        expect(response.success).to.be.false
+        funkoApp.stop()
+      })
+    })
   })
 })
