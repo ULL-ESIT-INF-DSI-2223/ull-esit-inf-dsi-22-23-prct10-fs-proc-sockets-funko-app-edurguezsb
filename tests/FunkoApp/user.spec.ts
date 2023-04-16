@@ -5,163 +5,143 @@ import { FunkoType } from '../../src/Ejercicio-FunkoAPP/Funko/Type.js'
 import { FunkoGenre } from '../../src/Ejercicio-FunkoAPP/Funko/Genre.js'
 import { FunkoPop } from '../../src/Ejercicio-FunkoAPP/Funko/FunkoPop.js'
 import { User } from '../../src/Ejercicio-FunkoAPP/User/user.js'
-const Oswald_The_Lucky_Rabbit = new FunkoPop(
-  0,
-  'Oswald The Lucky Rabbit',
-  'First character of Walt Disney',
-  FunkoType.POP_BLACK_AND_WHITE,
-  FunkoGenre.ANIMATION,
-  'Disney',
-  0
-)
 
-const Mickey_Mouse = new FunkoPop(
-  1,
-  'Mickey Mouse',
-  'Most famous character of Walt Disney',
-  FunkoType.POP_BLACK_AND_WHITE,
-  FunkoGenre.ANIMATION,
-  'Disney',
-  1
-)
+const Chucky = new FunkoPop(
+    0,
+    'Chucky',
+    'Chucky Muñeco Diabolico',
+    FunkoType.POP,
+    FunkoGenre.MOVIES_AND_TV,
+    'Miedo',
+    0
+  )
+  
+  const Mickey_Mouse = new FunkoPop(
+    1, 
+    'Mickey Mouse',
+    'The most famous character of Walt Disney',
+    FunkoType.POP_BLACK_AND_WHITE,
+    FunkoGenre.ANIMATION,
+    'Disney',
+    1
+  )
+  
+  const Darth_Vader = new FunkoPop(
+    2,
+    'Darth Vader',
+    'The most famous character of Star Wars',
+    FunkoType.POP,
+    FunkoGenre.MOVIES_AND_TV,
+    'Star Wars',
+    2
+  )
+  
+  const The_Mandalorian = new FunkoPop(
+    3,
+    'The Mandalorian',
+    'Important character of Starr Wars',
+    FunkoType.POP,
+    FunkoGenre.MOVIES_AND_TV,
+    'Star Wars',
+    3
+  )
+  
+  const Michelangelo = new FunkoPop(
+    4,
+    'Michelangelo',
+    'Una dee las 4 tortugas',
+    FunkoType.POP,
+    FunkoGenre.ANIMATION,
+    'Tortugas Ninja',
+    4)
+  
+  Chucky.marketPrice = 40
+  Mickey_Mouse.marketPrice = 35
+  Darth_Vader.marketPrice = 50
+  The_Mandalorian.marketPrice = 15
+  Michelangelo.marketPrice = 5
+  
+  const user = new User('Star Wars', Darth_Vader, The_Mandalorian)
 
-const Donald_Duck = new FunkoPop(
-  2,
-  'Donald Duck',
-  'Second most famous character of Walt Disney',
-  FunkoType.POP,
-  FunkoGenre.ANIMATION,
-  'Disney',
-  2
-)
-
-const Goofy = new FunkoPop(
-  3,
-  'Goofy',
-  'Third most famous character of Walt Disney',
-  FunkoType.POP,
-  FunkoGenre.ANIMATION,
-  'Disney',
-  3
-)
-
-const Minnie_Mouse = new FunkoPop(
-  4,
-  'Minnie Mouse',
-  'Wife of Mickey Mouse',
-  FunkoType.POP,
-  FunkoGenre.ANIMATION,
-  'Disney',
-  4
-)
-
-Oswald_The_Lucky_Rabbit.marketPrice = 40
-Mickey_Mouse.marketPrice = 35
-Donald_Duck.marketPrice = 20
-Goofy.marketPrice = 15
-Minnie_Mouse.marketPrice = 5
-
-const user = new User('Walt Disney', Mickey_Mouse, Donald_Duck, Goofy)
-
-describe('User class tests', () => {
-  it('Users should have a name', () => {
-    expect(user.name).to.be.a('string')
-    expect(user.name).to.equal('Walt Disney')
+  describe('User class', () => {
+    it('Los usuarios deberían tener un nombre', () => {
+      expect(user.name).to.be.a('string')
+      expect(user.name).to.equal('Star Wars')
+    });
+    it('Los usuarios deberían tener una colección de Funkos', () => {
+      expect(user.collection).to.be.a('array')
+      expect(user.collection).to.have.lengthOf(2)
   })
-  it('Users should have a collection of Funkos', () => {
-    expect(user.collection).to.be.a('array')
-    expect(user.collection).to.have.lengthOf(3)
-  })
-  it('Users should be able to add Funkos to their collection', () => {
-    expect(user.addFunko(Oswald_The_Lucky_Rabbit)).to.be.equal(
+  it('Los usuarios deberían poder agregar Funkos a su colección', () => {
+    expect(user.addFunko(Chucky)).to.be.equal(
       chalk.green(
-        Oswald_The_Lucky_Rabbit.name +
+        Chucky.name +
           ' added to ' +
           user.name +
           "'s collection"
       )
     )
-    expect(user.collection).to.have.lengthOf(4)
+    expect(user.collection).to.have.lengthOf(3)
   })
-  it('Users should be informed if they try to add a Funko that is already in their collection', () => {
-    expect(user.addFunko(Mickey_Mouse)).to.be.equal(
+  it('Los usuarios deben ser informados si intentan agregar un Funko que ya está en su colección', () => {
+    expect(user.addFunko(Darth_Vader)).to.be.equal(
       chalk.red(
         'Already exists a Funko Pop with id ' +
-          Mickey_Mouse.id +
+          Darth_Vader.id +
           ' in ' +
           user.name +
           "'s collection"
       )
     )
-    expect(user.collection).to.have.lengthOf(4)
+    expect(user.collection).to.have.lengthOf(3)
   })
-  it('Users should be able to modify a Funko if its id is in their collection', () => {
-    Mickey_Mouse.name = 'Mickey Mouse modified'
-    expect(user.updateFunko(Mickey_Mouse)).to.be.equal(
+  it('Los usuarios deberían poder modificar un Funko si su identificación está en su colección', () => {
+    Darth_Vader.name = 'Mickey Mouse modified'
+    expect(user.updateFunko(Darth_Vader)).to.be.equal(
       chalk.green(
         'Funko Pop with id ' +
-          Mickey_Mouse.id +
+          Darth_Vader.id +
           ' modified in ' +
           user.name +
           "'s collection"
       )
     )
-    expect(user.collection).to.have.lengthOf(4)
+    expect(user.collection).to.have.lengthOf(3)
   })
-  it('Users should be informed if they try to modify a Funko that is not in their collection', () => {
-    expect(user.updateFunko(Minnie_Mouse)).to.be.equal(
+  it('Los usuarios deben ser informados si intentan modificar un Funko que no está en su colección', () => {
+    expect(user.updateFunko(Michelangelo)).to.be.equal(
       chalk.red(
         'Funko Pop with id ' +
-          Minnie_Mouse.id +
+          Michelangelo.id +
           ' not in ' +
           user.name +
           "'s collection"
       )
     )
-    expect(user.collection).to.have.lengthOf(4)
+    expect(user.collection).to.have.lengthOf(3)
   })
-  it('Users should be able to remove Funkos from their collection', () => {
-    expect(user.removeFunko(Mickey_Mouse.id)).to.be.equal(
+  it('Los usuarios deberían poder eliminar Funkos de su colección', () => {
+    expect(user.removeFunko(Darth_Vader.id)).to.be.equal(
       chalk.green(
         'Funko Pop with id ' +
-          Mickey_Mouse.id +
+          Darth_Vader.id +
           ' removed from ' +
           user.name +
           "'s collection"
       )
     )
-    expect(user.collection).to.have.lengthOf(3)
+    expect(user.collection).to.have.lengthOf(2)
   })
-  it('Users should be informed if they try to remove a Funko that is not in their collection', () => {
-    expect(user.removeFunko(Minnie_Mouse.id)).to.be.equal(
+  it('Los usuarios deben ser informados si intentan eliminar un Funko que no está en su colección', () => {
+    expect(user.removeFunko(Michelangelo.id)).to.be.equal(
       chalk.red(
         'Funko Pop with id ' +
-          Minnie_Mouse.id +
+          Michelangelo.id +
           ' not in ' +
           user.name +
           "'s collection"
       )
     )
-    expect(user.collection).to.have.lengthOf(3)
-  })
-  it('Users should be able to search for Funkos in their collection', () => {
-    expect(user.searchFunko(Donald_Duck.id)).to.be.equal(
-      chalk.green(
-        'Funko Pop with id ' +
-          Donald_Duck.id +
-          ' found in ' +
-          user.name +
-          "'s collection"
-      )
-    )
-    expect(user.searchFunko(Minnie_Mouse.id)).to.be.equal(
-      chalk.red(
-        'Funko Pop with id ' +
-          Minnie_Mouse.id +
-          ' not in ' +
-          user.name +
-          "'s collection"
-      )
-    )
+    expect(user.collection).to.have.lengthOf(2)
   })
 })

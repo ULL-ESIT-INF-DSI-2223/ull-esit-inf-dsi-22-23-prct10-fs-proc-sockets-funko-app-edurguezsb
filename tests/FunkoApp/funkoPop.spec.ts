@@ -4,59 +4,59 @@ import { FunkoType } from '../../src/Ejercicio-FunkoAPP/Funko/Type.js'
 import { FunkoGenre } from '../../src/Ejercicio-FunkoAPP/Funko/Genre.js'
 import { FunkoPop } from '../../src/Ejercicio-FunkoAPP/Funko/FunkoPop.js'
 
-const Oswald_The_Lucky_Rabbit = new FunkoPop(
-  0,
-  'Oswald The Lucky Rabbit',
-  'First character of Walt Disney',
-  FunkoType.POP_BLACK_AND_WHITE,
-  FunkoGenre.ANIMATION,
-  'Disney',
-  0
-)
+const Chucky = new FunkoPop(
+    0,
+    'Chucky',
+    'Chucky Muñeco Diabolico',
+    FunkoType.POP,
+    FunkoGenre.MOVIES_AND_TV,
+    'Miedo',
+    0
+  )
 
 describe('Funko class tests', () => {
-  it('Funkos should have different types and genres', () => {
+  it('Funkos debe tener diferentes tipos y géneros', () => {
     expect(FunkoType).to.be.a('object')
     expect(FunkoGenre).to.be.a('object')
   })
-  it('Funkos should have an unique id', () => {
-    expect(Oswald_The_Lucky_Rabbit.id).to.be.a('number')
-    expect(Oswald_The_Lucky_Rabbit.id).to.equal(0)
+  it('Funkos debe tener una identificación única', () => {
+    expect(Chucky.id).to.be.a('number')
+    expect(Chucky.id).to.equal(0)
   })
-  it('Funkos should have a name', () => {
-    expect(Oswald_The_Lucky_Rabbit.name).to.be.a('string')
-    expect(Oswald_The_Lucky_Rabbit.name).to.equal('Oswald The Lucky Rabbit')
+  it('Funkos debería tener un nombre', () => {
+    expect(Chucky.name).to.be.a('string')
+    expect(Chucky.name).to.equal('Chucky')
   })
-  it('Funkos should have a description', () => {
-    expect(Oswald_The_Lucky_Rabbit.description).to.be.a('string')
-    expect(Oswald_The_Lucky_Rabbit.description).to.equal(
-      'First character of Walt Disney'
+  it('Funkos debe tener una descripción', () => {
+    expect(Chucky.description).to.be.a('string')
+    expect(Chucky.description).to.equal(
+      'Chucky Muñeco Diabolico'
     )
   })
-  it('Funkos should have a type', () => {
-    expect(Oswald_The_Lucky_Rabbit.type).to.be.a('string')
-    expect(Oswald_The_Lucky_Rabbit.type).to.equal(FunkoType.POP_BLACK_AND_WHITE)
+  it('Funkos debe tener un tipo', () => {
+    expect(Chucky.type).to.be.a('string')
+    expect(Chucky.type).to.equal(FunkoType.POP)
   })
-  it('Funkos should have a genre', () => {
-    expect(Oswald_The_Lucky_Rabbit.genre).to.be.a('string')
-    expect(Oswald_The_Lucky_Rabbit.genre).to.equal(FunkoGenre.ANIMATION)
+  it('Funkos debería tener un género', () => {
+    expect(Chucky.genre).to.be.a('string')
+    expect(Chucky.genre).to.equal(FunkoGenre.MOVIES_AND_TV)
   })
-  it('Funkos should have a brand', () => {
-    expect(Oswald_The_Lucky_Rabbit.brand).to.be.a('string')
-    expect(Oswald_The_Lucky_Rabbit.brand).to.equal('Disney')
+  it('Funkos debería tener una marca', () => {
+    expect(Chucky.brand).to.be.a('string')
+    expect(Chucky.brand).to.equal('Miedo')
   })
-  it('Funkos should have an unique id in their brand', () => {
-    expect(Oswald_The_Lucky_Rabbit.brandId).to.be.a('number')
-    expect(Oswald_The_Lucky_Rabbit.brandId).to.equal(0)
+  it('Funkos debería tener una identificación única en su marca', () => {
+    expect(Chucky.brandId).to.be.a('number')
+    expect(Chucky.brandId).to.equal(0)
   })
-  it('Funkos should have a Market Price', () => {
-    Oswald_The_Lucky_Rabbit.marketPrice = 20
-    expect(Oswald_The_Lucky_Rabbit.marketPrice).to.be.a('number')
-    expect(Oswald_The_Lucky_Rabbit.marketPrice).to.equal(20)
+  it('Funkos debería tener un precio de mercado', () => {
+    Chucky.marketPrice = 20
+    expect(Chucky.marketPrice).to.be.a('number')
+    expect(Chucky.marketPrice).to.equal(20)
   })
-  it('Funkos can be exclusive', () => {
-    Oswald_The_Lucky_Rabbit.exclusive = true
-    expect(Oswald_The_Lucky_Rabbit.exclusive).to.be.a('boolean')
-    expect(Oswald_The_Lucky_Rabbit.exclusive).to.equal(true)
+  it('Los Funkos pueden ser exclusivos', () => {
+    Chucky.exclusive = true
+    expect(Chucky.exclusive).to.be.a('boolean')
+    expect(Chucky.exclusive).to.equal(true)
   })
 })

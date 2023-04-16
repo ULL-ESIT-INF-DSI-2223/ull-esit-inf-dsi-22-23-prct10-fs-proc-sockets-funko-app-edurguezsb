@@ -84,13 +84,13 @@ export class User implements UserInfo {
    * @returns Un mensaje de éxito o error.
    */
   public addFunko(funkoPop: FunkoPop): string {
-    const notSameId = this.collection.filter((f) => f.id !== funkoPop.id);
+    const notSameId = this.collection.filter((f) => f.id !== funkoPop.id)
     if (notSameId.length !== this.collection.length)
       return chalk.red(
-        `Ya existe un Funko Pop con el ID ${funkoPop.id} en la colección de ${this.name}`
-      );
-    this.collection.push(funkoPop);
-    return chalk.green(`${funkoPop.name} agregado a la colección de ${this.name}`);
+        `Already exists a Funko Pop with id ${funkoPop.id} in ${this.name}'s collection`
+      )
+    this.collection.push(funkoPop)
+    return chalk.green(`${funkoPop.name} added to ${this.name}'s collection`)
   }
 
   /**
